@@ -4,6 +4,15 @@ using System.Collections.Generic;
 
 public class GristShell : MonoBehaviour
 {
+	public enum DirectionCalculationMode
+	{
+		NORMALS,
+		OFFSET,
+		OFFSET_NORMALISED
+	}
+
+	public DirectionCalculationMode directionCalculationMode = DirectionCalculationMode.OFFSET;	// The method used to calculate the direction of each bit.
+
 	public void Start()
 	{
 		Explode ();
@@ -43,7 +52,22 @@ public class GristShell : MonoBehaviour
 					Vector3 betwixtNormal = Vector3.Lerp (leftNormal, rightNormal, tWidth);
 					
 					surfacePoints.Add(betwixt);
-					surfaceNormals.Add(betwixtNormal);
+
+					switch (directionCalculationMode)
+					{
+					// Interpolate between the normals of the left and right part of the triangle.
+					case DirectionCalculationMode.NORMALS:
+						surfaceNormals.Add(betwixtNormal);
+						break;
+					// Get the true offset from the centre.
+					case DirectionCalculationMode.OFFSET:
+						surfaceNormals.Add((betwixt - GetMeshCentre(mesh)));
+						break;
+					// Get the normalised offset from the centre (i.e. the offset mapped to a unit sphere).
+					case DirectionCalculationMode.OFFSET_NORMALISED:
+						surfaceNormals.Add((betwixt - GetMeshCentre(mesh)).normalized);
+						break;
+					}
 				}
 			}
 		}
@@ -62,6 +86,20 @@ public class GristShell : MonoBehaviour
 //				}
 //			}
 //		}
+	}
+
+	private Vector3 GetMeshCentre(Mesh mesh)
+	{
+		Vector3 centre = Vector3.zero;
+
+		foreach (Vector3 vertex in mesh.vertices)
+		{
+			centre += vertex;
+		}
+
+		centre = transform.TransformPoint(centre / mesh.vertices.Length);
+
+		return centre;
 	}
 
 	public void Explode()
