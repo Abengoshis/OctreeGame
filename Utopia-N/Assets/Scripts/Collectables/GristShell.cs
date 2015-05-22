@@ -61,7 +61,11 @@ public class GristShell : MonoBehaviour
 						break;
 					// Get the true offset from the centre.
 					case DirectionCalculationMode.OFFSET:
-						surfaceNormals.Add((betwixt - GetMeshCentre(mesh)));
+						Vector3 offset = betwixt - GetMeshCentre(mesh);
+						offset.x /= transform.localScale.x;
+						offset.y /= transform.localScale.y;
+						offset.z /= transform.localScale.z;
+						surfaceNormals.Add(offset * 2);
 						break;
 					// Get the normalised offset from the centre (i.e. the offset mapped to a unit sphere).
 					case DirectionCalculationMode.OFFSET_NORMALISED:
@@ -102,15 +106,16 @@ public class GristShell : MonoBehaviour
 		return centre;
 	}
 
+
 	public void Explode()
 	{
 		// There will be a lot of surface points so write directly to the list rather than returning its value.
 		List<Vector3> surfacePoints, surfaceNormals;
-		GetPointsOnSurface(0.3f, out surfacePoints, out surfaceNormals);
+		GetPointsOnSurface(0.7f, out surfacePoints, out surfaceNormals);
 
 		for (int i = 0; i < surfacePoints.Count; ++i)
 		{
-			GameManager.main.gristManager.AddGrist(surfacePoints[i], surfaceNormals[i] * 0.5f);
+			GameManager.main.gristManager.AddGrist(surfacePoints[i], surfaceNormals[i] * 0.3f);
 		}
 
 	}
