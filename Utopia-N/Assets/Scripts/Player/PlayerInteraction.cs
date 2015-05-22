@@ -3,20 +3,7 @@ using System.Collections;
 
 public class PlayerInteraction : MonoBehaviour
 {
-	public Transform weaponHolder;
 	public Weapon leftWeapon, rightWeapon;
-
-	void FixedUpdate()
-	{
-		// Make the weapon holder rotate with the player.
-		weaponHolder.transform.rotation = Quaternion.Lerp(weaponHolder.transform.rotation, transform.rotation, 20 * Time.fixedDeltaTime);
-	}
-
-	void LateUpdate()
-	{
-		// Move the weapon holder to the player after physics has been applied.
-		weaponHolder.transform.position = transform.position;
-	}
 
 	// Update is called once per frame
 	void Update ()

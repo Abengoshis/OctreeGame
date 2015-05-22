@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 	public float yawSpeed = 1.0f;
 	public float rollSpeed = 1.0f;
 
+	public Transform model;
+
 	#region Components
 	new private Rigidbody rigidbody;
 	#endregion
@@ -19,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
 	{
 		// Assign components.
 		rigidbody = GetComponent<Rigidbody>();
+
+		// Deparent the model.
+		model.SetParent(null);
 	}
 
 	void FixedUpdate()
@@ -39,5 +44,14 @@ public class PlayerMovement : MonoBehaviour
 			rigidbody.AddRelativeForce(move * (maxSpeed - rigidbody.velocity.magnitude), ForceMode.Acceleration);
 		else
 			rigidbody.AddRelativeForce (move * acceleration, ForceMode.Acceleration);
+
+		// Make the weapon holder rotate with the player.
+		model.transform.rotation = Quaternion.Lerp(model.transform.rotation, transform.rotation, 20 * Time.fixedDeltaTime);
+	}
+	
+	void LateUpdate()
+	{
+		// Move the weapon holder to the player after physics has been applied.
+		model.transform.position = transform.position;
 	}
 }

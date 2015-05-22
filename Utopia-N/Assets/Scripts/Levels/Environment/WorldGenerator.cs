@@ -12,14 +12,14 @@ public class WorldGenerator : MonoBehaviour
 		{
 			public enum Kind
 			{
-				BIT,
+				GRIST,
 			}
 
-			public HashSet<int> bitIndices;
+			public HashSet<int> gristIndices;
 
 			public Data()
 			{
-				bitIndices = new HashSet<int>();
+				gristIndices = new HashSet<int>();
 			}
 		}
 
@@ -109,11 +109,103 @@ public class WorldGenerator : MonoBehaviour
 	//private List<Node[,,]> octreeLevels;
 	private Node[,,] octreeLeaves;
 
+	public GameObject DEBUG_WORLD_CUBE_PREFAB;
+	public void DEBUG_WORLD_GENERATE()
+	{
+		GameObject[,,] cubes = new GameObject[octreeLeaves.GetLength(0),octreeLeaves.GetLength(1),octreeLeaves.GetLength(2)];
+		for (int i = 0; i < octreeLeaves.GetLength(0); ++i)
+		{
+			for (int j = 0; j < octreeLeaves.GetLength(1); ++j)
+			{
+				for (int k = 0; k < octreeLeaves.GetLength(2); ++k)
+				{
+					cubes[i,j,k] = Instantiate<GameObject>(DEBUG_WORLD_CUBE_PREFAB);
+					Bounds bounds = GetLeafBoundsByLeafCoord(new Vector3(i,j,k));
+					cubes[i,j,k].transform.position = bounds.center;
+					cubes[i,j,k].transform.localScale = bounds.size;
+				}
+			}
+		}
+
+		Stack<Node> nodes = new Stack<Node>();
+		nodes.Push(octreeRoot);
+		List<Node> rooms = new List<Node>();
+		while (nodes.Count != 0)
+		{
+			Node current = nodes.Pop();
+			if (current.children != null)
+			{
+				if (current.level > 0 && Random.Range (0, 3) == 0)
+				{
+					Vector3 firstLeaf = GetLeafCoord (current.bounds.min);
+					Vector3 lastLeaf = GetLeafCoord (current.bounds.max);
+					int xLeaves = (int)(lastLeaf.x - firstLeaf.x) - 1;
+					int yLeaves = (int)(lastLeaf.y - firstLeaf.y) - 1;
+					int zLeaves = (int)(lastLeaf.z - firstLeaf.z) - 1;
+					
+					for (int i = 1; i < xLeaves - 1; ++i)
+					{
+						for (int j = 1; j < yLeaves - 1; ++j)
+						{
+							for (int k = 1; k < zLeaves - 1; ++k)
+							{
+								Destroy(cubes[(int)(firstLeaf.x + i), (int)(firstLeaf.y + j), (int)(firstLeaf.z + k)]);
+							}
+						}
+					}
+
+					rooms.Add(current);
+				}
+				else
+				{
+					foreach (Node child in current.children)
+					{
+						nodes.Push(child);
+					}
+				}
+			}
+		}
+
+		foreach (Node room in rooms)
+		{
+			Node[] parentChildren = room.parent.children;
+
+			for (int i = 0; i < parentChildren.Length; ++i)
+			{
+				for (int j = 0; j < parentChildren.Length; ++j)
+				{
+					if (i != j)
+					{
+						Bounds ib = parentChildren[i].bounds;
+						Bounds jb = parentChildren[j].bounds;
+
+						if (ib.center.x - jb.center.x != 0 ^ ib.center.y - jb.center.y != 0 ^ ib.center.z - jb.center.z != 0)
+						{
+							Vector3 ic = GetLeafCoord(ib.center);
+							Vector3 jc = GetLeafCoord(jb.center);
+							Vector3 dir = (jc - ic).normalized;
+
+							for (int ii = 0; ii <= Vector3.Distance(ic, jc); ++ii)
+							{
+								int x = (int)(ic.x + dir.x * ii);
+								int y = (int)(ic.y + dir.y * ii);
+								int z = (int)(ic.z + dir.z * ii);
+								Destroy(cubes[x, y, z]);
+							}
+						}						 
+					}
+				}
+			}
+		}
+	}
+
 	private void Awake()
 	{
 		// Build the octree recursively.
 		octreeRoot = new Node(0, null, new Bounds(Vector3.zero, octreeInfo.worldSize * Vector3.one), octreeInfo);
 		PopulateLeavesArray();
+	
+		DEBUG_WORLD_GENERATE();
 	}
 
 	public bool IsCoordinateValid(Vector3 coordinate)
@@ -147,8 +239,8 @@ public class WorldGenerator : MonoBehaviour
 		{
 			switch (kind)
 			{
-			case Node.Data.Kind.BIT:
-				node.data.bitIndices.Add((int)datum);
+			case Node.Data.Kind.GRIST:
+				node.data.gristIndices.Add((int)datum);
 				break;
 			}
 			node = node.parent;
@@ -163,8 +255,8 @@ public class WorldGenerator : MonoBehaviour
 		{
 			switch (kind)
 			{
-			case Node.Data.Kind.BIT:
-				node.data.bitIndices.Remove((int)datum);
+			case Node.Data.Kind.GRIST:
+				node.data.gristIndices.Remove((int)datum);
 				break;
 			}
 
@@ -185,9 +277,9 @@ public class WorldGenerator : MonoBehaviour
 				// Remove data from the old node and add data to the new node.
 				switch (kind)
 				{
-				case Node.Data.Kind.BIT:
-					oldNode.data.bitIndices.Remove((int)datum);
-					newNode.data.bitIndices.Add((int)datum);
+				case Node.Data.Kind.GRIST:
+					oldNode.data.gristIndices.Remove((int)datum);
+					newNode.data.gristIndices.Add((int)datum);
 					break;
 				}
 
@@ -320,15 +412,18 @@ public class WorldGenerator : MonoBehaviour
 	{
 		if (Application.isPlaying)
 		{
-			Gizmos.color = new Color(1.0f, 1.0f, 1.0f, 0.1f);
-
-			for (int i = 0; i < octreeLeaves.GetLength(0); ++i)
+			if (Input.GetKey(KeyCode.F1))
 			{
-				for (int j = 0; j < octreeLeaves.GetLength(1); ++j)
+				Gizmos.color = new Color(1.0f, 1.0f, 1.0f, 0.1f);
+
+				for (int i = 0; i < octreeLeaves.GetLength(0); ++i)
 				{
-					for (int k = 0; k < octreeLeaves.GetLength(2); ++k)
+					for (int j = 0; j < octreeLeaves.GetLength(1); ++j)
 					{
-						Gizmos.DrawWireCube(octreeLeaves[i,j,k].bounds.center, octreeLeaves[i,j,k].bounds.size);
+						for (int k = 0; k < octreeLeaves.GetLength(2); ++k)
+						{
+							Gizmos.DrawWireCube(octreeLeaves[i,j,k].bounds.center, octreeLeaves[i,j,k].bounds.size);
+						}
 					}
 				}
 			}

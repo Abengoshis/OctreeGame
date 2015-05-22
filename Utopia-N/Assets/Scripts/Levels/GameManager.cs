@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
 	public GameObject player;
 	public WorldGenerator worldGenerator;
-	public BitManager bitManager;
+	public GristManager gristManager;
 
 	private void Awake ()
 	{
