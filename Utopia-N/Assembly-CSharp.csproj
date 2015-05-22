@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\External Assets\Depth Mask Example\SetRenderQueue.cs" />
      <Compile Include="Assets\Scripts\Collectables\GristManager.cs" />
+     <Compile Include="Assets\Scripts\Collectables\GristShell.cs" />
      <Compile Include="Assets\Scripts\Effects\CameraEffect.cs" />
      <Compile Include="Assets\Scripts\Effects\Starfield.cs" />
      <Compile Include="Assets\Scripts\Levels\Environment\WorldGenerator.cs" />

@@ -14,6 +14,7 @@ public class GristManager : MonoBehaviour
 	public float gristLife;
 	public float gristSize;
 	public Color gristColour;
+	public float gristDrag;
 	public float gristShrinkDistanceSquared;
 	private ParticleSystem.Particle[] gristZeros;
 	private ParticleSystem.Particle[] gristOnes;
@@ -33,14 +34,14 @@ public class GristManager : MonoBehaviour
 		gristZeros = new ParticleSystem.Particle[zeros.maxParticles];
 		gristOnes = new ParticleSystem.Particle[ones.maxParticles];
 
-		for (int l = 0; l < 50; ++l)
-		{
-			Vector3 pos = Random.onUnitSphere * 200;
-			for (int i = 0; i < gristCount / 50; ++i)
-			{
-				AddGrist(pos + Random.insideUnitSphere * 20, Vector3.zero);
-			}
-		}
+//		for (int l = 0; l < 50; ++l)
+//		{
+//			Vector3 pos = Random.onUnitSphere * 200;
+//			for (int i = 0; i < gristCount / 50; ++i)
+//			{
+//				AddGrist(pos + Random.insideUnitSphere * 20, Vector3.zero);
+//			}
+//		}
 	}
 
 	private void Update()
@@ -74,6 +75,8 @@ public class GristManager : MonoBehaviour
 						tempZeros[i].velocity = -tempZeros[i].velocity;
 					}
 				}
+
+				tempZeros[i].velocity -= tempZeros[i].velocity * gristDrag * Time.deltaTime;
 			}
 		}
 		#endregion
@@ -108,6 +111,8 @@ public class GristManager : MonoBehaviour
 						tempOnes[i].velocity = -tempOnes[i].velocity;
 					}
 				}
+
+				tempOnes[i].velocity -= tempOnes[i].velocity * gristDrag * Time.deltaTime;
 			}
 		}
 		#endregion
@@ -131,9 +136,9 @@ public class GristManager : MonoBehaviour
 							if (gristIndex < zeros.maxParticles)
 							{
 								#region Zeros
-								// Check if it has passed through the player.
+								// Check if it will pass through the player.
 								RaycastHit hit;
-								if (Physics.Linecast(gristZeros[gristIndex].position, tempZeros[gristIndex].position, out hit, 1 << (GameManager.main.player.layer)))
+								if (Physics.Linecast(tempZeros[gristIndex].position, tempZeros[gristIndex].position + tempZeros[gristIndex].velocity * Time.deltaTime * 1.1f, out hit, 1 << (GameManager.main.player.layer)))
 								{
 									// Grist has passed through the player and must be destroyed.
 									tempZeros[gristIndex].lifetime = 0;
@@ -162,9 +167,9 @@ public class GristManager : MonoBehaviour
 								#region Ones
 								int newIndex = gristIndex - zeros.maxParticles;
 
-								// Check if it has passed through the player.
+								// Check if it will pass through the player.
 								RaycastHit hit;
-								if (Physics.Linecast(gristOnes[newIndex].position, tempOnes[newIndex].position, out hit, 1 << (GameManager.main.player.layer)))
+								if (Physics.Linecast(tempOnes[newIndex].position, tempOnes[newIndex].position + tempOnes[newIndex].velocity * Time.deltaTime * 1.1f, out hit, 1 << (GameManager.main.player.layer)))
 								{
 									// Grist has passed through the player and must be destroyed.
 									tempOnes[newIndex].lifetime = 0;

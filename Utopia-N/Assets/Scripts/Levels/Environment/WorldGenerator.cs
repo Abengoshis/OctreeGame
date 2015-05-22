@@ -205,7 +205,7 @@ public class WorldGenerator : MonoBehaviour
 		octreeRoot = new Node(0, null, new Bounds(Vector3.zero, octreeInfo.worldSize * Vector3.one), octreeInfo);
 		PopulateLeavesArray();
 	
-		DEBUG_WORLD_GENERATE();
+		//DEBUG_WORLD_GENERATE();
 	}
 
 	public bool IsCoordinateValid(Vector3 coordinate)
