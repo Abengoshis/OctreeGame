@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Collectables\BitManager.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Collectables\BitManager.cs" Line="101" Column="27" />
+      <File FileName="Assets\Scripts\Effects\Starfield.cs" Line="72" Column="10" />
+      <File FileName="Assets\Scripts\Levels\GameManager.cs" Line="9" Column="12" />
+      <File FileName="Assets\Scripts\Levels\WorldGenerator.cs" Line="323" Column="52" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
