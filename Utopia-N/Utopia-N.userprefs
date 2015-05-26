@@ -1,14 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Collectables\GristShell.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Level Generation\Room.cs">
     <Files>
-      <File FileName="Assets\Scripts\Collectables\GristShell.cs" Line="118" Column="84" />
-      <File FileName="Assets\Scripts\Collectables\GristManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Levels\Environment\WorldGenerator.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Effects\Starfield.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PlayerInteraction.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Levels\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Generation\LevelManager.cs" Line="33" Column="40" />
+      <File FileName="Assets\Scripts\Level Generation\Wall.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Generation\Tube.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Generation\Room.cs" Line="64" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
