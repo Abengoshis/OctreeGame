@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3390896}
   - 23: {fileID: 2373538}
   - 65: {fileID: 6518898}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 33: {fileID: 3303244}
   - 23: {fileID: 2301812}
   - 65: {fileID: 6521386}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - 4: {fileID: 488794}
   - 65: {fileID: 6508906}
   - 114: {fileID: 11484112}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ConnectorWall 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 452890}
   - 65: {fileID: 6525368}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -80,7 +80,7 @@ GameObject:
   - 33: {fileID: 3345314}
   - 23: {fileID: 2391356}
   - 65: {fileID: 6549284}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - 4: {fileID: 404594}
   - 65: {fileID: 6586540}
   - 114: {fileID: 11437582}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ConnectorWall 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - 33: {fileID: 3362650}
   - 23: {fileID: 2374012}
   - 65: {fileID: 6565630}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - 4: {fileID: 413754}
   - 65: {fileID: 6540212}
   - 114: {fileID: 11447470}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ConnectorWall 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - 33: {fileID: 3310832}
   - 23: {fileID: 2398988}
   - 65: {fileID: 6531360}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - 33: {fileID: 3365798}
   - 23: {fileID: 2316674}
   - 65: {fileID: 6555972}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   - 33: {fileID: 3374990}
   - 23: {fileID: 2305176}
   - 65: {fileID: 6589292}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - 33: {fileID: 3388578}
   - 23: {fileID: 2388420}
   - 65: {fileID: 6526856}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - 33: {fileID: 3328880}
   - 23: {fileID: 2388760}
   - 65: {fileID: 6533378}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - 33: {fileID: 3375252}
   - 23: {fileID: 2313556}
   - 65: {fileID: 6589572}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - 4: {fileID: 499582}
   - 65: {fileID: 6585100}
   - 114: {fileID: 11477508}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ConnectorWall 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - 33: {fileID: 3344064}
   - 23: {fileID: 2302556}
   - 65: {fileID: 6505598}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - 33: {fileID: 3362514}
   - 23: {fileID: 2385338}
   - 65: {fileID: 6540148}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - 33: {fileID: 3373264}
   - 23: {fileID: 2315658}
   - 65: {fileID: 6589314}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - 33: {fileID: 3387562}
   - 23: {fileID: 2384786}
   - 65: {fileID: 6509520}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - 33: {fileID: 3380788}
   - 23: {fileID: 2347360}
   - 65: {fileID: 6576814}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - 33: {fileID: 3344268}
   - 23: {fileID: 2344286}
   - 65: {fileID: 6507248}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - 33: {fileID: 3390650}
   - 23: {fileID: 2346054}
   - 65: {fileID: 6580844}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   - 33: {fileID: 3331054}
   - 23: {fileID: 2355138}
   - 65: {fileID: 6503702}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - 33: {fileID: 3339892}
   - 23: {fileID: 2388836}
   - 65: {fileID: 6541306}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - 4: {fileID: 443344}
   - 65: {fileID: 6596966}
   - 114: {fileID: 11414670}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ConnectorWall 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   - 33: {fileID: 3301310}
   - 23: {fileID: 2348722}
   - 65: {fileID: 6575378}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 417502}
   - 114: {fileID: 11474852}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Room(Cube)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   - 33: {fileID: 3360220}
   - 23: {fileID: 2305694}
   - 65: {fileID: 6573622}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   - 33: {fileID: 3373530}
   - 23: {fileID: 2303064}
   - 65: {fileID: 6576260}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   - 33: {fileID: 3317790}
   - 23: {fileID: 2306686}
   - 65: {fileID: 6509888}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - 33: {fileID: 3306828}
   - 23: {fileID: 2367418}
   - 65: {fileID: 6598476}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Piece 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   - 4: {fileID: 488644}
   - 65: {fileID: 6524190}
   - 114: {fileID: 11471388}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ConnectorWall 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +815,7 @@ Transform:
   m_GameObject: {fileID: 109970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 443344}
   - {fileID: 499582}
@@ -991,7 +991,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1015,7 +1015,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1039,7 +1039,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1063,7 +1063,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1087,7 +1087,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1111,7 +1111,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1135,7 +1135,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1159,7 +1159,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1183,7 +1183,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1207,7 +1207,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1231,7 +1231,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1255,7 +1255,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1279,7 +1279,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1303,7 +1303,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1327,7 +1327,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1351,7 +1351,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1375,7 +1375,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1399,7 +1399,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1423,7 +1423,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1447,7 +1447,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1471,7 +1471,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1495,7 +1495,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1519,7 +1519,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1543,7 +1543,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38937896b77e97e4aadfe82fd06ca7cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

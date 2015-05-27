@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
 	public int graphRecursions;
 	public Room graphRoot;
 
-	private void Awake()
+	private void Start()
 	{
 		instance = this;
 

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Tube : MonoBehaviour
 {
-	public const float RADIUS = 0.5f;
+	public const float RADIUS = 4.0f;
 	public float length { get { return transform.localScale.z; } }
 
 	public Room a { get; private set; }
@@ -11,6 +11,11 @@ public class Tube : MonoBehaviour
 
 	public Vector3 aHole { get; private set; }
 	public Vector3 bHole { get; private set; }
+
+	private void Awake()
+	{
+		transform.localScale = RADIUS * 2 * Vector3.one;
+	}
 
 	/// <summary>
 	/// Enters the tube, activating the rooms.

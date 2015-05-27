@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class Room : MonoBehaviour
 {
-	const float SCALE_MIN = 5;
-	const float SCALE_MAX = 10;
-	const float DISTANCE_MIN = 2;
-	const float DISTANCE_MAX = 6;
+	const float SCALE_MIN = 20;
+	const float SCALE_MAX = 50;
+	const float DISTANCE_MIN = 20;
+	const float DISTANCE_MAX = 80;
 
 	public Transform model { get; private set; }
 	private int connectionCount;
@@ -29,7 +29,7 @@ public class Room : MonoBehaviour
 		{
 			if (connectedRooms[i] == null || connectedRooms[i].isActiveAndEnabled)
 				continue;
-
+		
 			Room child = connectedRooms[i];
 			Wall wallToChild = connectionWalls[i];
 
@@ -43,7 +43,7 @@ public class Room : MonoBehaviour
 					// Get the wall in the child that leads to this room.
 					Wall wallToThis = child.connectionWalls[j];
 
-					// Rotate the child so that the wallToThis is facing away from the wallToChild.
+					// Rotate the child so that the wallToThis is facing away from the wallToChild.							// TODO: This is currently broken for some reason!
 					Vector3 currentDirectionToThis = wallToThis.transform.position - child.transform.position;
 					Vector3 desiredDirectionToThis = transform.position - wallToChild.transform.position;
 					Quaternion rotation = Quaternion.FromToRotation(currentDirectionToThis, desiredDirectionToThis);
@@ -55,13 +55,26 @@ public class Room : MonoBehaviour
 					child.transform.position = wallToChild.holePosition + offsetFromWallToThis - desiredDirectionToThis.normalized * distanceBetweenRooms;
 
 					// Create a tube between the rooms.
-					connectionTubes[i] = Instantiate<GameObject>(LevelManager.instance.tubePrefab).GetComponent<Tube>();
-					connectionTubes[i].transform.SetParent(transform.parent);
+					if (connectionTubes[i] == null)
+					{
+						connectionTubes[i] = Instantiate<GameObject>(LevelManager.instance.tubePrefab).GetComponent<Tube>();
+						connectionTubes[i].transform.SetParent(transform.parent);
+					}
 					connectionTubes[i].SetRooms(this, child);
-					break;
+					//break;
 				}
-
-				//child.ActivateConnections();
+				else if (child.connectedRooms[j] != null)
+				{
+					// Create connection tubes to currently unpositioned rooms from the child.
+					if (child.connectionTubes[j] == null)
+					{
+						child.connectionTubes[j] = Instantiate<GameObject>(LevelManager.instance.tubePrefab).GetComponent<Tube>();
+						child.connectionTubes[j].transform.SetParent(child.transform.parent);
+						child.connectionTubes[j].transform.localScale += new Vector3(0.0f, 0.0f, 10.0f);
+						child.connectionTubes[j].transform.forward = child.connectionWalls[j].transform.position - child.transform.position;
+						child.connectionTubes[j].transform.position = child.connectionWalls[j].holePosition + child.connectionTubes[j].transform.forward * child.connectionTubes[j].transform.localScale.z * 0.5f;
+					}
+				}
 			}
 		}
 
@@ -161,7 +174,7 @@ public class Room : MonoBehaviour
 	{
 		if (connectionCount != 0)
 		{
-			Debug.Log ("Room already built.");
+			Debug.Log ("Room already branched.");
 			return;
 		}
 
@@ -186,7 +199,9 @@ public class Room : MonoBehaviour
 				Room child = Instantiate<GameObject>(prefab).GetComponent<Room>();
 				child.name = prefab.name;
 				child.transform.SetParent(transform.parent);
-				child.model.transform.localScale = new Vector3(Random.Range (SCALE_MIN, SCALE_MAX + 1), Random.Range (SCALE_MIN, SCALE_MAX + 1), Random.Range (SCALE_MIN, SCALE_MAX + 1));
+				child.model.transform.localScale = new Vector3((int)(Random.Range (SCALE_MIN, SCALE_MAX + 1) * 100) / 100.0f,
+				                                               (int)(Random.Range (SCALE_MIN, SCALE_MAX + 1) * 100) / 100.0f,
+				                                               (int)(Random.Range (SCALE_MIN, SCALE_MAX + 1) * 100) / 100.0f);
 
 				// Connect to the child.
 				Connect (child);
