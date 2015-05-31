@@ -6,8 +6,7 @@ public class Room : MonoBehaviour
 {
 	const float SCALE_MIN = 20;
 	const float SCALE_MAX = 50;
-	const float DISTANCE_MIN = 20;
-	const float DISTANCE_MAX = 80;
+	const float DISTANCE_BETWEEN_LEVELS = 30;
 
 	public Transform model { get; private set; }
 	private int connectionCount;
@@ -43,15 +42,18 @@ public class Room : MonoBehaviour
 					// Get the wall in the child that leads to this room.
 					Wall wallToThis = child.connectionWalls[j];
 
-					// Rotate the child so that the wallToThis is facing away from the wallToChild.							// TODO: This is currently broken for some reason!
-					Vector3 currentDirectionToThis = wallToThis.transform.position - child.transform.position;
-					Vector3 desiredDirectionToThis = transform.position - wallToChild.transform.position;
-					Quaternion rotation = Quaternion.FromToRotation(currentDirectionToThis, desiredDirectionToThis);
-					child.transform.rotation = rotation;
+					// Rotate the child so that the wallToThis is facing away from the wallToChild.
+					Vector3 currentDirectionToThis = wallToThis.transform.forward;
+					Vector3 desiredDirectionToThis = -wallToChild.transform.forward;
+					if (currentDirectionToThis != desiredDirectionToThis)
+					{
+						Quaternion rotation = Quaternion.FromToRotation(currentDirectionToThis, desiredDirectionToThis);
+						child.transform.rotation = rotation;
+					}
 
 					// Position the wallToThis of the child in front of the wallToChild so that the holes align.
 					Vector3 offsetFromWallToThis = child.transform.position - wallToThis.holePosition;
-					float distanceBetweenRooms = Random.Range (DISTANCE_MIN, DISTANCE_MAX + 1);
+					float distanceBetweenRooms = (Mathf.Abs(child.level - level) + 1) * DISTANCE_BETWEEN_LEVELS;
 					child.transform.position = wallToChild.holePosition + offsetFromWallToThis - desiredDirectionToThis.normalized * distanceBetweenRooms;
 
 					// Create a tube between the rooms.
@@ -70,7 +72,7 @@ public class Room : MonoBehaviour
 					{
 						child.connectionTubes[j] = Instantiate<GameObject>(LevelManager.instance.tubePrefab).GetComponent<Tube>();
 						child.connectionTubes[j].transform.SetParent(child.transform.parent);
-						child.connectionTubes[j].transform.localScale += new Vector3(0.0f, 0.0f, 10.0f);
+						child.connectionTubes[j].transform.localScale += new Vector3(0.0f, 0.0f, DISTANCE_BETWEEN_LEVELS * 2);
 						child.connectionTubes[j].transform.forward = child.connectionWalls[j].transform.position - child.transform.position;
 						child.connectionTubes[j].transform.position = child.connectionWalls[j].holePosition + child.connectionTubes[j].transform.forward * child.connectionTubes[j].transform.localScale.z * 0.5f;
 					}
@@ -195,7 +197,7 @@ public class Room : MonoBehaviour
 			for (int i = 0; i < numChildren; ++i)
 			{
 				// Create the child with a random shape and size.
-				GameObject prefab = LevelManager.instance.GetRandomRoomPrefab();
+				GameObject prefab = LevelManager.GetRandomRoomPrefab();
 				Room child = Instantiate<GameObject>(prefab).GetComponent<Room>();
 				child.name = prefab.name;
 				child.transform.SetParent(transform.parent);

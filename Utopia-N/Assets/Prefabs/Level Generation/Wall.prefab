@@ -348,6 +348,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1c9780dea31d545ab728f89159d0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingPrefabs:
+  - {fileID: 140794, guid: 39b52633df219454ab842ddfde0085b7, type: 2}
+  cityMaterial: {fileID: 2100000, guid: dab1d31b6c54e2346988a6aa553b507d, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

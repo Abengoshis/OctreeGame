@@ -900,7 +900,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 500
+    maxNumParticles: 1000
   ShapeModule:
     serializedVersion: 2
     enabled: 0
@@ -1917,7 +1917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -2057,9 +2057,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveAcceleration: {x: 20, y: 20, z: 40}
   moveSpeed: 50
-  turnAcceleration: {x: 40, y: 40, z: 20}
-  turnSpeed: 50
-  turnDeadzone: .0500000007
+  turnAcceleration: {x: 30, y: 30, z: 20}
+  turnSpeed: 40
+  turnDeadzone: .100000001
   cameraOffset: {x: 0, y: 1, z: -3}
 --- !u!1 &1951202606
 GameObject:

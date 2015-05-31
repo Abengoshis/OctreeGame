@@ -43,14 +43,8 @@ public class PlayerMovement : MonoBehaviour
 	private void CalculateTorque(float pitchFactor, float yawFactor, float rollFactor)
 	{
 		torque = Vector3.zero;
-
-		// Calculate torque if the cursor is out of the deadzone.
-		Vector2 ellipseCoord = new Vector2(SimulatedCursor.cursorPosition.x * Screen.height / Screen.width, SimulatedCursor.cursorPosition.y);
-		if (ellipseCoord.magnitude > turnDeadzone * Screen.height)
-		{
-			torque += new Vector3(pitchFactor * turnAcceleration.x,
-			                     yawFactor * turnAcceleration.y);
-		}
+		torque = new Vector3(pitchFactor * turnAcceleration.x,
+		                     yawFactor * turnAcceleration.y);
 
 		torque.z = rollFactor * turnAcceleration.z;
 		angularVelocity += torque * 100 * Time.deltaTime;
@@ -71,8 +65,13 @@ public class PlayerMovement : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		float pitchFactor = -(SimulatedCursor.cursorPosition.y / Screen.height + 0.15f);
-		float yawFactor = SimulatedCursor.cursorPosition.x / Screen.width;
+		// Get the cursor in normalised ellipsoid space.
+		Vector2 ellipseCoord = new Vector2((SimulatedCursor.cursorPosition.x * Screen.height / Screen.width) / Screen.width, SimulatedCursor.cursorPosition.y / Screen.height);
+
+		// DO SOMETHING WITH THE DEADZONE TO MAKE THE SPEED SCALE BETWEEN THE DEADZONE ELLIPSE AND THE OUTER ELLIPSE.
+
+		float pitchFactor = -(ellipseCoord.y + 0.15f);
+		float yawFactor = ellipseCoord.x * Screen.width / Screen.height;
 		float rollFactor = (Input.GetKey (KeyCode.Q) ? 1 : 0) - (Input.GetKey(KeyCode.E) ? 1 : 0);
 
 		CalculateForce();
