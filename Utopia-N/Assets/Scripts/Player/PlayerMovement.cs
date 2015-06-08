@@ -3,97 +3,119 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-	public Vector3 moveAcceleration;
-	public float moveSpeed;
-	private Vector3 force;
+	public Transform model;
+	public Camera camera;
+	private Vector3 cameraOffset;
+	
+	public Rigidbody rigidbody;
+	public float xAcceleration, yAcceleration, zAcceleration;
+	public float pitchAcceleration, yawAcceleration, rollAcceleration;
+	private float throttle;
+	private Vector3 angularVelocity = Vector3.zero;	// Fake angular velocity since rotation is constrained to avoid jarring collisions.
+	
+	private float xInput, yInput, zInput, xAngInput, yAngInput, zAngInput;
 
-	public Vector3 turnAcceleration;
-	public float turnSpeed;
-	public float turnDeadzone;	// Deadzone radius as a factor of the screen height.
-	private Vector3 torque;
-	private Vector3 angularVelocity;
-
-	public Vector3 cameraOffset;
-
-	private Transform model;
-	private float modelAngleMax = 90.0f;	// The model will be pitched/yawed this amount as a factor of the screen height.
-
-	// Components
-	Rigidbody rigidbody;
+	private bool oob = false;	// Whether the player is out of bounds and will automatically turn back.
+	private Vector3 oobDirection, oobUp, oobCamPos;
+	private float oobSpeed;
+	private float oobReturnDuration = 4.0f;
+	private float oobReturnTimer = 0.0f;
 
 	private void Awake()
 	{
-		model = transform.Find ("Model");
-		rigidbody = GetComponent<Rigidbody>();
+		cameraOffset = camera.transform.position - transform.position;
+		rigidbody.velocity = Vector3.zero;
 	}
-
-	private void TurnModel(float pitchFactor, float yawFactor, float rollFactor)
+	
+	private void Update()
 	{
-		float modelPitchDesired = pitchFactor * modelAngleMax * Screen.height / Screen.width;
-		float modelYawDesired = yawFactor * modelAngleMax;
-		float modelRollDesired = Mathf.Clamp (force.x / moveSpeed * modelAngleMax * 0.5f + rollFactor * modelAngleMax * 0.25f, -modelAngleMax * 0.4f, modelAngleMax * 0.4f);
+		if (!oob)
+		{
+			// Get the cursor in normalised ellipsoid space.
+			Vector2 ellipseCoord = new Vector2((SimulatedCursor.cursorPosition.x * Screen.height / Screen.width), SimulatedCursor.cursorPosition.y);
 
-		Vector3 temp = model.transform.localEulerAngles;
-		temp.x += Mathf.DeltaAngle (temp.x, modelPitchDesired) * Time.deltaTime * 10;
-		temp.y += Mathf.DeltaAngle (temp.y, modelYawDesired) * Time.deltaTime * 10;
-		temp.z += Mathf.DeltaAngle (temp.z, modelRollDesired) * Time.deltaTime * 5;
-		model.transform.localEulerAngles = temp;
-	}
+			xInput = Input.GetAxis("Skew");
+			yInput = -Input.GetAxis("Vertical");
+			zInput = Input.GetAxis("Depth");
 
-	private void CalculateTorque(float pitchFactor, float yawFactor, float rollFactor)
-	{
-		torque = Vector3.zero;
-		torque = new Vector3(pitchFactor * turnAcceleration.x,
-		                     yawFactor * turnAcceleration.y);
+			xAngInput = -(ellipseCoord.y);
+			yAngInput = ellipseCoord.x * Screen.width / Screen.height;
+			zAngInput = Input.GetAxis("Horizontal");
 
-		torque.z = rollFactor * turnAcceleration.z;
-		angularVelocity += torque * 100 * Time.deltaTime;
-		angularVelocity -= angularVelocity * rigidbody.angularDrag * Time.deltaTime;
-		if (angularVelocity.sqrMagnitude > turnSpeed * turnSpeed * 10000)
-			angularVelocity = angularVelocity.normalized * turnSpeed;
-	}
+			// Manage the fake angular velocity.
+			angularVelocity /= (1 + rigidbody.angularDrag * Time.deltaTime);
+			angularVelocity += new Vector3(pitchAcceleration * xAngInput, yawAcceleration * yAngInput, rollAcceleration * -zAngInput) * Time.deltaTime;
 
-	private void CalculateForce()
-	{
-		force = Vector3.zero;
-
-		force.x = Input.GetAxis("Horizontal") * moveAcceleration.x;
-		force.y = (Input.GetKey (KeyCode.Space) ? moveAcceleration.y : 0) - (Input.GetKey(KeyCode.LeftControl) ? moveAcceleration.y : 0);
-		force.z = Input.GetAxis("Vertical") * moveAcceleration.z;
-
-	}
-
-	private void LateUpdate()
-	{
-		// Get the cursor in normalised ellipsoid space.
-		Vector2 ellipseCoord = new Vector2((SimulatedCursor.cursorPosition.x * Screen.height / Screen.width) / Screen.width, SimulatedCursor.cursorPosition.y / Screen.height);
-
-		// DO SOMETHING WITH THE DEADZONE TO MAKE THE SPEED SCALE BETWEEN THE DEADZONE ELLIPSE AND THE OUTER ELLIPSE.
-
-		float pitchFactor = -(ellipseCoord.y + 0.15f);
-		float yawFactor = ellipseCoord.x * Screen.width / Screen.height;
-		float rollFactor = (Input.GetKey (KeyCode.Q) ? 1 : 0) - (Input.GetKey(KeyCode.E) ? 1 : 0);
-
-		CalculateForce();
-		CalculateTorque(pitchFactor, yawFactor, rollFactor);
-		TurnModel(pitchFactor, yawFactor, rollFactor);
+		}
+		else
+		{
+			oobReturnTimer += Time.deltaTime;
+			if (oobReturnTimer > oobReturnDuration)
+			{
+				oobReturnTimer = 0;
+				oob = false;
+			}
+		}
 	}
 
 	private void FixedUpdate()
 	{
-		rigidbody.AddRelativeForce(force, ForceMode.Acceleration);
-		transform.rotation *= Quaternion.Euler(angularVelocity * Time.fixedDeltaTime);
-
-		if (rigidbody.velocity.sqrMagnitude > moveSpeed * moveSpeed)
-			rigidbody.velocity = rigidbody.velocity.normalized * moveSpeed;
-
-		Vector3 nextCameraPosition = transform.position + transform.right * cameraOffset.x + transform.up * cameraOffset.y + transform.forward * cameraOffset.z;
-		RaycastHit hit;
-		if (Physics.SphereCast(transform.position, Camera.main.nearClipPlane, nextCameraPosition - transform.position, out hit, Vector3.Distance(transform.position, nextCameraPosition), ~(1 << gameObject.layer)))
+		if (!oob)
 		{
-			nextCameraPosition = hit.point + hit.normal * Camera.main.nearClipPlane;
+			rigidbody.AddRelativeForce(xAcceleration * xInput, yAcceleration * yInput, zAcceleration * zInput, ForceMode.Acceleration);
+			transform.rotation *= Quaternion.Euler(angularVelocity * Time.fixedDeltaTime);
+
+			model.transform.rotation = Quaternion.LookRotation(Camera.main.ViewportToWorldPoint(new Vector3(SimulatedCursor.cursorPosition.x + 0.5f, SimulatedCursor.cursorPosition.y + 0.5f, 1000.0f)) - transform.position, transform.up);
+
+			camera.transform.position = transform.TransformPoint(cameraOffset);
+			camera.transform.rotation = Quaternion.Lerp (camera.transform.rotation, Quaternion.LookRotation(transform.forward, Vector3.Lerp (camera.transform.up, transform.up, Vector3.Angle (camera.transform.up, transform.up) * 0.005f)), 4 * Time.fixedDeltaTime);
 		}
-		Camera.main.transform.position = nextCameraPosition;
-		Camera.main.transform.LookAt(transform.position + transform.up * cameraOffset.y, transform.up);
+		else
+		{
+			float portionOOB = 0.5f;
+			float portionWait = portionOOB + 0.1f;
+
+			float lerp = Mathf.SmoothStep(0, 1, oobReturnTimer / (oobReturnDuration * portionOOB));
+			Vector3 dForward = Vector3.Slerp (oobDirection + oobUp, -oobDirection + oobUp, lerp) - oobUp;	// Slerp the direction around up.
+			Vector3 dUp = Vector3.Slerp (oobUp - oobDirection, -oobUp - oobDirection, lerp) + oobDirection;	// Slerp up around the direction.
+			rigidbody.velocity = dForward * oobSpeed;
+			transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dForward, dUp), 180 * Time.deltaTime); 
+
+			if (oobReturnTimer <= oobReturnDuration * portionWait)
+			{
+				//camera.transform.position = Vector3.Lerp (oobCamPos, transform.TransformPoint(cameraOffset), lerp);		
+				camera.transform.rotation = Quaternion.Lerp (camera.transform.rotation, Quaternion.LookRotation(transform.position - camera.transform.position, dForward), 4 * Time.fixedDeltaTime);
+			}
+			else
+			{
+				lerp = Mathf.SmoothStep(0, 1, (oobReturnTimer - oobReturnDuration * portionWait) / (oobReturnDuration * (1 - portionWait)));
+				camera.transform.position = Vector3.Lerp (camera.transform.position, transform.TransformPoint(cameraOffset), lerp);		
+				camera.transform.rotation = Quaternion.Lerp(Quaternion.Lerp (camera.transform.rotation, Quaternion.LookRotation(transform.position - camera.transform.position, dForward), 4 * Time.fixedDeltaTime),
+				                                            Quaternion.Lerp (camera.transform.rotation, Quaternion.LookRotation(transform.forward, Vector3.Lerp (camera.transform.up, transform.up, Vector3.Angle (camera.transform.up, transform.up) * 0.005f)), 4 * Time.fixedDeltaTime),
+				                                            lerp);	// WOW this needs to be cleaned up!!!
+			}
+
+		}
+	
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (!oob)
+		{
+			if (other.gameObject.layer == LayerMask.NameToLayer("Skybox"))
+			{
+				oob = true;
+				oobDirection = rigidbody.velocity.normalized;
+				oobUp = transform.up;
+				oobCamPos = camera.transform.position;
+				oobSpeed = rigidbody.velocity.magnitude;
+				if (oobSpeed == 0)
+					oobSpeed = zAcceleration;
+
+				xInput = yInput = zInput = xAngInput = yAngInput = zAngInput = 0;
+				angularVelocity = Vector3.zero;
+			}
+		}
 	}
 }

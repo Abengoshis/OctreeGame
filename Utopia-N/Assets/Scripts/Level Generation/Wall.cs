@@ -61,7 +61,15 @@ public class Wall : MonoBehaviour
 		pieces[1].localPosition = new Vector3(pieces[0].localPosition.x + pieces[0].localScale.x * 0.5f + pieces[1].localScale.x * 0.5f, 0.5f - pieces[1].localScale.y * 0.5f, 0);
 		pieces[2].localPosition = new Vector3(pieces[0].localPosition.x + pieces[0].localScale.x * 0.5f + pieces[1].localScale.x * 0.5f, pieces[2].localScale.y * 0.5f - 0.5f, 0);
 
-		GenerateBuildings();
+		foreach (Transform piece in pieces)
+		{
+			// Set the piece's material to the ground material as if it is the ground of the city.
+			piece.GetComponent<Renderer>().material = cityMaterial;	// make all invisible and use shader to make an infinite plane with a hole in it on one of the walls.
+			piece.GetComponent<Collider>().isTrigger = false;
+			piece.gameObject.layer = LayerMask.NameToLayer("Default");
+		}
+
+		//GenerateBuildings();
 	}
 
 	private void Split(Rect source)
@@ -127,9 +135,6 @@ public class Wall : MonoBehaviour
 		{
 			// Split the piece into buildings.
 			Split (new Rect(piece.localPosition.x - piece.localScale.x / 2, piece.localPosition.y - piece.localScale.y / 2, piece.localScale.x, piece.localScale.y)); 
-      	
-			// Set the piece's material to the ground material as if it is the ground of the city.
-			piece.GetComponent<Renderer>().material = cityMaterial;
 		}
 	}
 }

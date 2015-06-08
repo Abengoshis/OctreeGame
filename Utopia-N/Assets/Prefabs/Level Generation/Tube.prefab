@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 490972}
   - 65: {fileID: 6512492}
   - 114: {fileID: 11434284}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 33: {fileID: 3364656}
   - 23: {fileID: 2309192}
   - 64: {fileID: 6413234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tube2_Exterior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - 33: {fileID: 3324470}
   - 23: {fileID: 2303606}
   - 64: {fileID: 6429038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tube2_Interior
   m_TagString: Untagged
   m_Icon: {fileID: 0}

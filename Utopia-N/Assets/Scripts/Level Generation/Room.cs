@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class Room : MonoBehaviour
 {
-	const float SCALE_MIN = 20;
-	const float SCALE_MAX = 50;
+	const float SCALE_MIN = 200;
+	const float SCALE_MAX = 1000;
 	const float DISTANCE_BETWEEN_LEVELS = 30;
 
 	public Transform model { get; private set; }

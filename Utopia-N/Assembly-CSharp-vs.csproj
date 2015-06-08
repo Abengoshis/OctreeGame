@@ -58,7 +58,8 @@
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\SimulatedCursor.cs" />
      <None Include="Assets\Materials\Migraine\Tech.shader" />
-     <None Include="Assets\Materials\Room\Grid.shader" />
+     <None Include="Assets\Materials\StandardOverlay.shader" />
+     <None Include="Assets\Materials\Room\Skybox.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

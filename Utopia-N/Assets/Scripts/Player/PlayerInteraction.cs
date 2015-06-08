@@ -3,20 +3,18 @@ using System.Collections;
 
 public class PlayerInteraction : MonoBehaviour
 {
-	public float aimRadius = 1.0f;	// Outer radius as a factor of the screen height.
-
 	private Transform aimTarget = null;
 	private Transform lockTarget = null;	// todo:
 
 	private void Update ()
 	{
-		// Keep the cursor in an ellipse.
-		Vector2 ellipseCoord = new Vector2(SimulatedCursor.cursorPosition.x * Screen.height / Screen.width, SimulatedCursor.cursorPosition.y);
-		if (ellipseCoord.magnitude > aimRadius * Screen.height)
-		{
-			ellipseCoord = ellipseCoord.normalized * aimRadius * Screen.height;
-			SimulatedCursor.cursorPosition = new Vector2(ellipseCoord.x * Screen.width / Screen.height, ellipseCoord.y);
-		}
+//		// Keep the cursor in an ellipse.
+//		Vector2 ellipseCoord = new Vector2(SimulatedCursor.cursorPosition.x * Screen.height / Screen.width, SimulatedCursor.cursorPosition.y);
+//		if (ellipseCoord.magnitude > aimRadius)
+//		{
+//			ellipseCoord = ellipseCoord.normalized * aimRadius;
+//			SimulatedCursor.cursorPosition = new Vector2(ellipseCoord.x * Screen.width / Screen.height, ellipseCoord.y);
+//		}
 
 		HandleAiming();
 	}
