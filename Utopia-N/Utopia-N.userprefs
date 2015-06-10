@@ -1,12 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapons\Ray Weaponry\RayGun.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\PlayerMovement.cs" Line="50" Column="7" />
-      <File FileName="..\..\..\Dogfight\Assets\Scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Level Generation\Wall.cs" Line="1" Column="1" />
-      <File FileName="Assets\Materials\Room\Skybox.shader" Line="18" Column="5" />
-      <File FileName="Assets\Materials\StandardOverlay.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapons\Ray Weaponry\RayGun.cs" Line="90" Column="58" />
+      <File FileName="Assets\Scripts\Weapons\Projectile Weaponry\ProjectileGun.cs" Line="51" Column="4" />
+      <File FileName="Assets\Scripts\Weapons\Gun.cs" Line="6" Column="34" />
+      <File FileName="Assets\Scripts\Pool.cs" Line="70" Column="4" />
+      <File FileName="Assets\Scripts\Actors\Player\Player.cs" Line="11" Column="15" />
+      <File FileName="Assets\Scripts\Actors\Player\PlayerInteraction.cs" Line="26" Column="3" />
+      <File FileName="Assets\Scripts\Actors\Player\PlayerMovement.cs" Line="128" Column="111" />
+      <File FileName="Assets\Scripts\Actors\Enemies\ByteEnemy.cs" Line="11" Column="11" />
+      <File FileName="Assets\Scripts\Weapons\Projectile Weaponry\Projectile.cs" Line="6" Column="43" />
+      <File FileName="Assets\Scripts\Poolable.cs" Line="6" Column="22" />
+      <File FileName="Assets\Scripts\Actors\Actor.cs" Line="70" Column="22" />
+      <File FileName="Assets\Scripts\Weapons\GunController.cs" Line="9" Column="3" />
+      <File FileName="Assets\Scripts\SimulatedCursor.cs" Line="37" Column="119" />
+      <File FileName="c:\Users\Alex\Documents\GitHub\OctreeGame\Utopia-N\Assets\Level Generation\Room.cs" Line="74" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

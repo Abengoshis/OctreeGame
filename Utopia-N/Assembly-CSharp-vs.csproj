@@ -46,17 +46,26 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Level Generation\LevelManager.cs" />
+     <Compile Include="Assets\Level Generation\Room.cs" />
+     <Compile Include="Assets\Level Generation\Tube.cs" />
+     <Compile Include="Assets\Level Generation\Wall.cs" />
+     <Compile Include="Assets\Scripts\Actors\Actor.cs" />
+     <Compile Include="Assets\Scripts\Actors\Enemies\ByteEnemy.cs" />
+     <Compile Include="Assets\Scripts\Actors\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Actors\Player\PlayerInteraction.cs" />
+     <Compile Include="Assets\Scripts\Actors\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Effects\CameraEffect.cs" />
      <Compile Include="Assets\Scripts\Effects\Starfield.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Level Generation\LevelManager.cs" />
-     <Compile Include="Assets\Scripts\Level Generation\Room.cs" />
-     <Compile Include="Assets\Scripts\Level Generation\Tube.cs" />
-     <Compile Include="Assets\Scripts\Level Generation\Wall.cs" />
-     <Compile Include="Assets\Scripts\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerInteraction.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Pool.cs" />
+     <Compile Include="Assets\Scripts\Poolable.cs" />
      <Compile Include="Assets\Scripts\SimulatedCursor.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Gun.cs" />
+     <Compile Include="Assets\Scripts\Weapons\GunController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Projectile Weaponry\Projectile.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Projectile Weaponry\ProjectileGun.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Ray Weaponry\RayGun.cs" />
      <None Include="Assets\Materials\Migraine\Tech.shader" />
      <None Include="Assets\Materials\StandardOverlay.shader" />
      <None Include="Assets\Materials\Room\Skybox.shader" />

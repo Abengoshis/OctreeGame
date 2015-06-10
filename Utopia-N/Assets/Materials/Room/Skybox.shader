@@ -13,9 +13,9 @@
 	{
 		Tags { "Queue"="Background" }
 		
-		Cull Off
+		Cull Back
 		ZWrite Off
-		//ZTest Always
+		ZTest LEqual
 		Lighting Off
 		Fog{Mode Off}
 		
@@ -55,15 +55,31 @@
 			uvFixed.y = plane.y != 0 ? plane.y : plane.z;	// If y is 0, x must not be 0 so x was assigned before.
 			uvFixed /= _GridScale;
 			
-			fixed4 colSky = texCUBE(_SkyCube, IN.viewDir);
-			fixed4 colGrid = tex2D(_GridTex, uvFixed);
-			colGrid = colGrid * colGrid + pow(_GridColor * colGrid.a, 4);
+			half amp = 0.005;
+			half freq = 80;
+			uvFixed.x += (amp * sin(_Time.w + uvFixed.y * freq)) / 2;
+			uvFixed.y += amp * sin(_Time.w + uvFixed.x * freq);
+			uvFixed.x += (amp * sin(_Time.w + uvFixed.y * freq)) / 2;
+			
+			amp = 0.02;
+			freq = 2;
+			
+			uvFixed.x += amp * sin(_Time.w + uvFixed.y * freq);
+			uvFixed.y += amp * cos(_Time.w + uvFixed.x * freq);
 			
 			half3 vecToCam = _WorldSpaceCameraPos - IN.worldPos;
 			half distToCam = vecToCam.x * vecToCam.x + vecToCam.y * vecToCam.y + vecToCam.z * vecToCam.z;
 			distToCam = max(distToCam, 100.0);
 			
-			o.Albedo = colSky + colGrid / (distToCam / _GridRevealDistance);
+			fixed4 colGrid = tex2D(_GridTex, uvFixed);
+			colGrid = (colGrid * colGrid + pow(_GridColor * colGrid.a, 4))/ (distToCam / _GridRevealDistance);
+			
+			float3 view = IN.viewDir;
+			view.z -= colGrid.r * 0.1;
+			
+			fixed4 colSky = texCUBE(_SkyCube, view);
+			
+			o.Albedo = colSky + colGrid;
 			o.Alpha = 0;
 		}
 		ENDCG
